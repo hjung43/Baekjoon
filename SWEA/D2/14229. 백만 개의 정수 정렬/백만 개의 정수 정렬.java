@@ -1,38 +1,54 @@
-import java.util.Scanner;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+ 
 public class Solution {
-	public static int[]arr = new int[1000000];
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		for(int i=0; i<1000000; i++) {
-			arr[i] = sc.nextInt();
-		}
-		quickSort(0,1000000-1);
-		System.out.println(arr[500000]);
-	}
-	public static void quickSort(int L, int R) {
-		if(L<R) {
-			int pivot = lomuto(L,R);
-			quickSort(L,pivot-1);
-			quickSort(pivot+1,R);
-		}
-	}
-	public static int lomuto (int L,int R) {
-		int pivot = arr[R];
-		int i = L-1;
-		
-		for(int j=L; j<R; j++) {
-			if(arr[j]<=pivot) {
-				i++;
-				int tmp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = tmp;
-			}
-		}
-		int tmp = arr[i+1];
-		arr[i+1] = arr[R];
-		arr[R] = tmp;
-		return i+1;
-	}
-
+    public static int[]arr;
+    public static int[]sortArr;
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+        arr = new int [1000000];
+        sortArr = new int [1000000];
+         
+        for (int i = 0; i <1000000; i++) {
+            arr[i]=Integer.parseInt(st.nextToken());
+        }
+        mergeSort(0,1000000-1);
+        System.out.println(arr[500000]);
+    }
+    public static void mergeSort(int left, int right) {
+        if(left<right) {
+            int mid = (left+right)/2;
+            mergeSort(left,mid);
+            mergeSort(mid+1,right);
+            merge(left,mid,right);
+        }
+    }
+    public static void merge(int left, int mid, int right) {
+        int L = left;
+        int R = mid+1;
+        int idx = left;
+        while(L<=mid && R<=right) {
+            if(arr[L]<=arr[R]) {
+                sortArr[idx++] = arr[L++];
+            }else {
+                sortArr[idx++] = arr[R++];
+            }
+        }
+        if(L<=mid) {
+            for(int i=L; i<=mid; i++) {
+                sortArr[idx++]=arr[i];
+            }
+        }else {
+            for(int i=R; i<=right; i++) {
+                sortArr[idx++]=arr[i];
+            }
+        }
+        
+        for(int i=left; i<=right; i++) {
+            arr[i] = sortArr[i];
+        }
+    }
 }
