@@ -1,26 +1,20 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-				
-		int n = sc.nextInt();
-	
-		int max = Integer.MIN_VALUE;
-		int min = Integer.MAX_VALUE;
-		
-		int [] nums = new int[n];
-		for(int i = 0; i <n; i++) {
-			nums[i] = sc.nextInt();
-		}
-		for(int i = 0; i <n; i++) {
-			if(nums[i]>=max) {
-				max = nums[i];
-			}
-			if(nums[i]<=min) {
-				min = nums[i];
-			}
-		}
-		System.out.print(min+" "+max);
-	}
+	public static void main(String[] args)throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int max = -1000000;
+        int min = 1000000;
+        for(int i = 0; i<n; i++) {
+        	int num = Integer.parseInt(st.nextToken());
+        	max = Math.max(max, num);
+        	min = Math.min(min, num);
+        }
+        System.out.println(min+" "+max);
+    }
 }
