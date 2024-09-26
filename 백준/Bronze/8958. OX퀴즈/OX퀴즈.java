@@ -1,32 +1,28 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		
-		int T = sc.nextInt(); //테스트케이스 개수 받기
-		//테스트케이스만큼 반복하기
-		for (int t = 0; t < T; t++) { 
-			String ox = sc.next(); //OX퀴즈 결과 받기
-			int[] score = new int[ox.length()]; //각 문제별 점수 저장하는 배열
-			//문제수 만큼 반복해서 배열에 점수저장
-			for (int i = 0; i < ox.length(); i++) {
-				if (ox.charAt(i) == 'O') { //문제를 맞았을때
-					if (i == 0) { //첫번째 문제는 1점
-						score[i] = 1;
-					} else {  //나머지 문제는 앞 문제점수 +1점
-						score[i] = score[i - 1] + 1;
-					}
-				} else { //문제를 틀렸을때 0점
-					score[i] = 0;
-				}
-			}
-			int sum = 0; //전체 점수 저장하는 변수
-			//점수 배열을 통해 전체점수 찾기
-			for (int i = 0; i < score.length; i++) {
-				sum += score[i];
-			}
-			System.out.println(sum);
-		}
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine()); //테스트 케이스 수
+        for(int t=0; t<T; t++){  //테스트 케이스 만큼 반복
+            String ans = br.readLine(); //ox퀴즈 결과 입력
+            int result = 0; //총 점수 저장하는 변수
+            int score = 1;  //연속 점수 저장하는 변수(연속하며 맞출수록 1씩 증가)
+           
+            for(int i=0; i<ans.length(); i++){   //문제수 만큼 반복
+                    if(ans.charAt(i)=='O'){ //문제를 맞췄으면
+                        result+=score++; //총 점수에 score 추가 후 1증가
+                    }else{ //문제 틀렸을때
+                        score=1; //score 1점으로 초기화
+                    }
+            }
+            System.out.println(result); //출력
+        }
+
+
+    }
 }
