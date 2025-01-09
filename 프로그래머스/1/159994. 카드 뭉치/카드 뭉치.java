@@ -15,9 +15,12 @@ class Solution {
                 c2++; //다음 인덱스로 넘어가기
             }else{ //원하는 단어가 현재 인덱스에 없으면
                 isMake = false; //문장을 만들 수 없음
+                //return "No"; 다른 풀이 보니까 다 여기서 리턴함 그게 더 깔끔하다
+                //이렇게 하면 isMake가 필요없음
                 break;
             }
         }
+        //return "Yes";
         //문장 만들수 있는지 확인 후 리턴
         if(isMake){
             answer = "Yes";
