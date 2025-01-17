@@ -7,6 +7,8 @@ class Solution {
         int[] kList = new int[k]; //명예의 전당 배열
         answer[0] = score[0]; //첫번째 최소발표점수는 점수가 하나밖에 없기 때문에 무조건 score[0]
         int kScore = 0;
+        
+        //k가 Score 길이보다 더 클 경우 Score길이 만큼 탐색
         if(k > score.length){
             kScore=score.length;
         }else{
@@ -30,7 +32,7 @@ class Solution {
             }
             answer[l]=score[l]; //정답배열에 정리한 점수중 가장 작은 점수 옮기기
         }
-        // if(k!=score.length){
+
             //k일차부터 마지막날 까지 명예의전당 점수 계산
             for(int i=k; i<score.length; i++){
                 //현재 명예의전당 점수들과 i일차의 점수 비교
@@ -46,7 +48,7 @@ class Solution {
                 }
                 answer[i]=kList[k-1]; //i일차 까지 명예의전당 점수정리 후 가장 작은 점수 정답배열에 넣기
             }
-        // }      
+   
         return answer;
     }
 }
