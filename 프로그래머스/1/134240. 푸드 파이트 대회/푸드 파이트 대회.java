@@ -17,6 +17,8 @@ class Solution {
         for(int i=sb.length()-2; i>=0; i--){
             sb.append(sb.charAt(i));
         }
+        //마지막 for문 answer + builder.reverse(); 이거한줄로 바꿀수 있음
+        
         String answer = sb.toString(); //자료형 문자열로 바꾸기
         return answer;
     }
