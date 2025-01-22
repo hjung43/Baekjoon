@@ -10,5 +10,6 @@ class Solution {
             return 0;
         }
         return total-money;
+        //return Math.max(total-money,0); 이렇게 하면 if문 필요없음
     }
 }
