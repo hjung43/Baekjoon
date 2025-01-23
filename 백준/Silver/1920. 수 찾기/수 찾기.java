@@ -1,35 +1,43 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
-public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		
-		int n = sc.nextInt();
-		int[]nums = new int [n];
-		for(int i=0; i<n; i++) {
-			nums[i]=sc.nextInt();
-		}
-		Arrays.sort(nums);
-		int m =sc.nextInt();
-		for(int i=0; i<m; i++) {
-			int find=sc.nextInt();
-			int result = 0;
-			int st = 0;
-			int ed = nums.length-1;
-			while(st<=ed) {
-				int mid = (st+ed)/2;
-				if(find==nums[mid]) {
-					result++;
-					System.out.println(result);
-					break;
-				} else if(find>nums[mid])
-					st = mid+1;
-				else
-					ed = mid-1;
-			}
-			if(result == 0)
-				System.out.println(result);
-		}
-	}
+class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));     
+        int n = Integer.parseInt(br.readLine());
+        int[] num = new int[n];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        for(int i=0; i<n; i++){
+            num[i]= Integer.parseInt(st.nextToken());
+        }
+        Arrays.sort(num);
+        
+        int m = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+
+        for(int i=0; i<m; i++){
+            int key = Integer.parseInt(st.nextToken());
+            int start = 0;
+            int end = n-1;
+            boolean exist = false;
+            while(start <= end){
+                int mid = (start+end)/2;
+                if(num[mid]==key){
+                    System.out.println(1);
+                    exist = true;
+                    break;
+                }else if(num[mid]>key){
+                    end = mid-1;
+                }else{
+                    start = mid+1;
+                }
+            }
+            if(!exist){
+                System.out.println(0);
+            }
+        }
+        
+    }
 }
