@@ -1,20 +1,19 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+import java.lang.*;
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-				
-		int n = sc.nextInt();
-		int x = sc.nextInt();
-		
-		int [] nums = new int[n];
-		for(int i = 0; i <n; i++) {
-			nums[i] = sc.nextInt();
-		}
-		for(int i = 0; i <n; i++) {
-			if(nums[i]<x) {
-				System.out.print(nums[i]+" ");;
-			}
-		}
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int x = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < n; i++) {
+            int num = Integer.parseInt(st.nextToken());
+            if(num <x){
+                System.out.print(num+" ");
+            }
+        }
+    }
 }
